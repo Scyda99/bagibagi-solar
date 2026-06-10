@@ -29,5 +29,15 @@ app.get("/latest-donation", (req, res) => {
 app.get("/", (req, res) => {
     res.send("Server Bagibagi Roblox Aktif");
 });
+app.get("/test-donation", (req, res) => {
 
+    latestDonation = {
+        id: Date.now(),
+        name: "Tester",
+        amount: 10000,
+        message: "Ini donasi percobaan"
+    };
+
+    res.json(latestDonation);
+});
 app.listen(process.env.PORT || 3000);
