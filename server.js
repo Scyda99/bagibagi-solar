@@ -1,5 +1,4 @@
 const express = require("express");
-
 const app = express();
 
 app.use(express.json());
@@ -7,7 +6,6 @@ app.use(express.json());
 let latestDonation = null;
 
 app.post("/webhook", (req, res) => {
-
     latestDonation = {
         id: Date.now(),
         name: req.body.name || "Anonim",
@@ -15,11 +13,9 @@ app.post("/webhook", (req, res) => {
         message: req.body.message || ""
     };
 
-    console.log(latestDonation);
+    console.log("DONATION:", latestDonation);
 
-    res.status(200).json({
-        success: true
-    });
+    res.json({ success: true });
 });
 
 app.get("/latest-donation", (req, res) => {
@@ -29,15 +25,8 @@ app.get("/latest-donation", (req, res) => {
 app.get("/", (req, res) => {
     res.send("Server Bagibagi Roblox Aktif");
 });
-app.get("/test-donation", (req, res) => {
 
-    latestDonation = {
-        id: Date.now(),
-        name: "Tester",
-        amount: 10000,
-        message: "Ini donasi percobaan"
-    };
-
-    res.json(latestDonation);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log("Server jalan di port " + PORT);
 });
-app.listen(process.env.PORT || 3000);
